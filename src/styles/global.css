@@ -1,0 +1,131 @@
+/* ===========================================================================
+   watson-prover.org — design tokens + base styles
+   ---------------------------------------------------------------------------
+   The color scheme is derived from the ZFC textbook (zfc.watson-prover.org)
+   so the whole watson-prover.org family reads as one system. This file is the
+   single source of color truth — components reference the tokens below, never
+   raw hex values.
+   Light theme only for now. Tokens are named so a dark theme could be layered
+   on later without renaming anything.
+   =========================================================================== */
+
+:root {
+  /* --- Core surfaces & text --------------------------------------------- */
+  --bg: #fefefe;              /* page background (near-white) */
+  --text: #222222;           /* body text (near-black) */
+  --muted: #7c7f93;          /* secondary / de-emphasized text */
+  --border: #e6e6e6;         /* hairline dividers, card edges */
+
+  /* --- Signature dark surface (nav / footer / hero panels) -------------- */
+  --surface-dark: #283340;   /* dark desaturated slate */
+  --on-dark: #8aadc4;        /* muted steel-blue text on the dark surface */
+  --on-dark-dim: #67889f;    /* dimmer text on the dark surface */
+  --hover-surface: #70828b36;/* translucent hover wash (works on dark) */
+
+  /* --- Accent (primary brand blue) ------------------------------------- */
+  --accent: #3070b7;         /* buttons, links, the square badge motif */
+  --accent-soft: #6b9ec2;    /* hover / active accent (lighter) */
+  --on-accent: #ffffff;      /* text on accent fills */
+
+  /* --- Code sample palette (Catppuccin Latte) --------------------------
+     Ready for future syntax-highlighted proof snippets; unused for now. */
+  --code-bg: #f6f6f8;
+  --code-comment: #7c7f93;
+  --code-keyword: #8839ef;
+  --code-name: #1e66f5;
+  --code-teal: #179299;
+  --code-string: #40a02b;
+
+  /* --- Typography ------------------------------------------------------- */
+  --font-serif: 'Lora', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'Fira Code', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* --- Layout scale ----------------------------------------------------- */
+  --content-max: 1080px;     /* max width of centered content */
+  --prose-max: 700px;        /* narrower measure for reading text */
+  --radius: 4px;             /* matches the textbook's square-ish badge feel */
+  --space: 1rem;
+}
+
+/* --- Reset-ish base ------------------------------------------------------ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* --- Headings use the serif (Lora) -------------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--text);
+  margin: 0 0 0.5em;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 1.9rem; }
+h3 { font-size: 1.4rem; }
+
+p { margin: 0 0 1em; }
+
+/* --- Links -------------------------------------------------------------- */
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--accent-soft);
+  text-decoration: underline;
+}
+
+/* --- Code --------------------------------------------------------------- */
+code, pre {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+pre {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+}
+
+/* --- Layout helpers ----------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+/* Main grows so the footer sits at the bottom on short pages */
+main {
+  flex: 1 0 auto;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}

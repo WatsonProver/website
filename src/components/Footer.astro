@@ -1,0 +1,92 @@
+---
+// Dark footer — uses the signature dark surface. Structural placeholders;
+// real copy/links to be finalized later.
+const year = new Date().getFullYear();
+
+const links = [
+  { label: 'Home', href: '/' },
+  { label: 'About', href: '/about' },
+  { label: 'Textbook', href: 'https://zfc.watson-prover.org', external: true },
+  { label: 'GitHub', href: 'https://github.com/WatsonProver', external: true },
+];
+---
+
+<footer class="site-footer">
+  <div class="container inner">
+    <div class="col">
+      <a class="brand" href="/">
+        <span class="brand-badge" aria-hidden="true"></span>
+        <span class="brand-name">Watson</span>
+      </a>
+      <!-- TODO: short tagline / description goes here -->
+    </div>
+    <nav class="foot-nav" aria-label="Footer">
+      {links.map((item) => (
+        <a
+          href={item.href}
+          {...item.external ? { target: '_blank', rel: 'noopener' } : {}}
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+  <div class="container copyright">
+    <span>&copy; {year} Watson</span>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--surface-dark);
+    color: var(--on-dark);
+    margin-top: 4rem;
+    padding-block: 2.5rem 1.5rem;
+  }
+  .inner {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+  }
+  .brand-badge {
+    width: 20px;
+    height: 20px;
+    border-radius: 2px;
+    background: var(--accent);
+  }
+  .brand-name {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #ffffff;
+  }
+
+  .foot-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .foot-nav a {
+    color: var(--on-dark);
+    font-size: 0.95rem;
+  }
+  .foot-nav a:hover {
+    color: #ffffff;
+  }
+
+  .copyright {
+    margin-top: 2rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 0.85rem;
+    color: var(--on-dark-dim);
+  }
+</style>

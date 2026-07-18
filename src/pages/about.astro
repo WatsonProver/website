@@ -1,0 +1,35 @@
+---
+// About page — SKELETON ONLY. Placeholder structure; real copy later.
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="About — Watson">
+  <section class="container prose">
+    <h1>About</h1>
+    <p class="lede">Placeholder intro sentence for the About page.</p>
+
+    <h2>Section heading placeholder</h2>
+    <p>
+      Body-text placeholder. This page's real content — what Watson is, the
+      motivation, the foundations — will be written in a later pass.
+    </p>
+
+    <h2>Another section</h2>
+    <p>Body-text placeholder.</p>
+  </section>
+</Base>
+
+<style>
+  .prose {
+    max-width: var(--prose-max);
+    padding-block: 4rem;
+  }
+  .prose .lede {
+    font-size: 1.2rem;
+    color: var(--muted);
+    margin-bottom: 2rem;
+  }
+  .prose h2 {
+    margin-top: 2.5rem;
+  }
+</style>

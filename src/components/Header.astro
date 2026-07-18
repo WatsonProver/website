@@ -1,0 +1,102 @@
+---
+// Site header / primary nav. Structural only — labels are final, but the
+// brand mark is a placeholder (real logo TBD).
+const nav = [
+  { label: 'Home', href: '/' },
+  { label: 'About', href: '/about' },
+  { label: 'Textbook', href: 'https://zfc.watson-prover.org', external: true },
+  { label: 'GitHub', href: 'https://github.com/WatsonProver', external: true },
+];
+
+const path = Astro.url.pathname;
+const isActive = (href: string) =>
+  href === '/' ? path === '/' : path.startsWith(href);
+---
+
+<header class="site-header">
+  <div class="container bar">
+    <a class="brand" href="/">
+      <span class="brand-badge" aria-hidden="true"></span>
+      <span class="brand-name">Watson</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      {nav.map((item) => (
+        <a
+          href={item.href}
+          class:list={['nav-link', { active: !item.external && isActive(item.href) }]}
+          {...item.external ? { target: '_blank', rel: 'noopener' } : {}}
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    background: var(--surface-dark);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    min-height: 60px;
+  }
+
+  /* Brand — the square badge echoes the textbook's blue chapter-number motif */
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+  }
+  .brand-badge {
+    width: 22px;
+    height: 22px;
+    border-radius: 2px;
+    background: var(--accent);
+  }
+  .brand-name {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 1.15rem;
+    color: #ffffff;
+  }
+  .brand:hover {
+    text-decoration: none;
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+  }
+  .nav-link {
+    color: var(--on-dark);
+    font-size: 0.95rem;
+    padding: 0.4rem 0.7rem;
+    border-radius: var(--radius);
+    text-decoration: none;
+  }
+  .nav-link:hover {
+    background: var(--hover-surface);
+    color: #ffffff;
+    text-decoration: none;
+  }
+  .nav-link.active {
+    color: #ffffff;
+  }
+
+  @media (max-width: 560px) {
+    .bar {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+      padding-block: 0.75rem;
+    }
+  }
+</style>
