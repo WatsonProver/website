@@ -2,46 +2,59 @@
 // Home page — SKELETON ONLY.
 // Layout + palette are wired up; all text is placeholder. Real hero copy,
 // feature descriptions, and positioning are for a later pass.
-import Base from '../layouts/Base.astro';
-import Button from '../components/Button.astro';
-
-// Placeholder feature cards — titles/blurbs are stand-ins, not final copy.
-const features = [
-  { title: 'Feature one', body: 'Placeholder description for a key feature.' },
-  { title: 'Feature two', body: 'Placeholder description for a key feature.' },
-  { title: 'Feature three', body: 'Placeholder description for a key feature.' },
-];
+import Base from "../layouts/Base.astro";
+import Button from "../components/Button.astro";
 ---
 
 <Base title="Watson">
-  <!-- HERO ---------------------------------------------------------------- -->
   <section class="hero">
     <div class="container hero-inner">
-      <p class="eyebrow">Placeholder eyebrow</p>
-      <h1>Headline placeholder</h1>
-      <p class="lede">
-        Subheading placeholder — a sentence or two describing Watson goes here
-        later.
-      </p>
-      <div class="cta-row">
-        <Button href="/about">Primary action</Button>
-        <Button href="https://zfc.watson-prover.org" variant="outline" external>
-          Read the textbook
-        </Button>
-      </div>
+      <h1>Watson</h1>
     </div>
   </section>
 
-  <!-- FEATURE GRID -------------------------------------------------------- -->
-  <section class="container features">
-    <div class="feature-grid">
-      {features.map((f) => (
-        <article class="card">
-          <span class="card-badge" aria-hidden="true"></span>
-          <h3>{f.title}</h3>
-          <p>{f.body}</p>
-        </article>
-      ))}
+  <!-- PROOF DEMO ---------------------------------------------------------- -->
+  <section class="container demo">
+    <div class="demo-grid">
+      <div class="demo-prose">
+        <p class="eyebrow">Natural proofs</p>
+        <h2>Proofs that read like proofs</h2>
+        <p>
+          Paragraph that talks about how cool watson proofs are
+        </p>
+        <ul class="demo-points">
+          <li>
+            Steps read as sentences: <em>arbitrary x; assume …; thus …</em>
+          </li>
+          <li>
+            Syntax you define yourself; Watson has no built-in proof grammar
+          </li>
+          <li>Another cool fact</li>
+        </ul>
+      </div>
+
+      <figure class="code-win">
+        <figcaption class="code-bar">
+          <span class="fname">set/fn.wats</span>
+        </figcaption>
+        <pre
+          class="code"><code><span class="t-com">-- the inverse of a bijection is itself a bijection</span>
+<span class="t-kw">theorem</span> <span class="t-def">bij.has_inverse</span> <span class="t-punc">[</span>f A B <span class="t-punc">:</span> <span class="t-type">term</span><span class="t-punc">]</span> <span class="t-punc">:</span> <span class="t-punc">(</span>f <span class="t-op">∈</span> <span class="t-punc">(</span>A <span class="t-op">↔</span> B<span class="t-punc">))</span>
+    <span class="t-op">|-</span> f<span class="t-op">⁻¹</span> <span class="t-op">∈</span> <span class="t-punc">(</span>B <span class="t-op">↔</span> A<span class="t-punc">)</span>
+<span class="t-kw">proof</span>
+    <span class="t-kw">follows</span> f<span class="t-op">⁻¹</span> <span class="t-op">∈</span> <span class="t-punc">(</span>B <span class="t-op">→</span> A<span class="t-punc">)</span> <span class="t-kw">by</span> <span class="t-name">inv.is_fn_on</span><span class="t-punc">;</span>
+    <span class="t-kw">follows</span> dom<span class="t-punc">(</span>f<span class="t-punc">)</span> <span class="t-op">=</span> A <span class="t-kw">by</span> <span class="t-name">bij_on.def</span><span class="t-punc">,</span> <span class="t-name">inj_on.def</span><span class="t-punc">,</span> <span class="t-name">fn_on.is_fn</span><span class="t-punc">;</span>
+    <span class="t-kw">follows</span> ran<span class="t-punc">(</span>f<span class="t-op">⁻¹</span><span class="t-punc">)</span> <span class="t-op">=</span> A <span class="t-kw">by</span> <span class="t-name">inv.ran</span> <span class="t-kw">given</span> dom<span class="t-punc">(</span>f<span class="t-punc">)</span> <span class="t-op">=</span> A<span class="t-punc">;</span>
+    <span class="t-kw">thus</span> <span class="t-op">∀</span>x<span class="t-punc">,</span> <span class="t-op">∀</span>y<span class="t-punc">,</span> x <span class="t-op">∈</span> B <span class="t-op">∧</span> y <span class="t-op">∈</span> B <span class="t-op">∧</span> f<span class="t-op">⁻¹</span><span class="t-punc">(</span>x<span class="t-punc">)</span> <span class="t-op">=</span> f<span class="t-op">⁻¹</span><span class="t-punc">(</span>y<span class="t-punc">)</span> <span class="t-op">→</span> x <span class="t-op">=</span> y <span class="t-kw">as</span>
+        <span class="t-kw">arbitrary</span> x<span class="t-punc">;</span> <span class="t-kw">arbitrary</span> y<span class="t-punc">;</span>
+        <span class="t-kw">assume</span> x <span class="t-op">∈</span> B <span class="t-op">∧</span> y <span class="t-op">∈</span> B <span class="t-op">∧</span> f<span class="t-op">⁻¹</span><span class="t-punc">(</span>x<span class="t-punc">)</span> <span class="t-op">=</span> f<span class="t-op">⁻¹</span><span class="t-punc">(</span>y<span class="t-punc">)</span> <span class="t-kw">then</span> x <span class="t-op">=</span> y <span class="t-kw">as</span>
+            <span class="t-kw">follows</span> f<span class="t-punc">(</span>f<span class="t-op">⁻¹</span><span class="t-punc">(</span>x<span class="t-punc">))</span> <span class="t-op">=</span> x <span class="t-op">∧</span> f<span class="t-punc">(</span>f<span class="t-op">⁻¹</span><span class="t-punc">(</span>y<span class="t-punc">))</span> <span class="t-op">=</span> y <span class="t-kw">by</span> <span class="t-name">inv.apply</span><span class="t-punc">;</span>
+            <span class="t-kw">done logically</span><span class="t-punc">;</span>
+        <span class="t-kw">done logically</span><span class="t-punc">;</span>
+    <span class="t-kw">follows</span> f<span class="t-op">⁻¹</span> <span class="t-op">∈</span> <span class="t-punc">(</span>B <span class="t-op">↣</span> A<span class="t-punc">)</span> <span class="t-kw">by</span> <span class="t-name">inj_on.def</span><span class="t-punc">;</span>
+    <span class="t-kw">done</span> <span class="t-kw">by</span> <span class="t-name">bij_on.def</span>
+<span class="t-kw">qed</span></code></pre>
+      </figure>
     </div>
   </section>
 </Base>
@@ -78,33 +91,117 @@ const features = [
     flex-wrap: wrap;
   }
 
-  .features {
+  /* --- Proof demo -------------------------------------------------------- */
+  .demo {
     padding-block: 3.5rem;
   }
-  .feature-grid {
+  .demo-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    align-items: center;
   }
-  .card {
+  @media (min-width: 860px) {
+    .demo-grid {
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 3rem;
+    }
+  }
+  .demo-prose h2 {
+    margin-bottom: 0.6rem;
+  }
+  .demo-prose p {
+    color: var(--muted);
+    max-width: 42ch;
+  }
+  .demo-points {
+    list-style: none;
+    margin: 1.25rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: 0.6rem;
+  }
+  .demo-points li {
+    position: relative;
+    padding-left: 1.4rem;
+    color: var(--text);
+    font-size: 0.95rem;
+  }
+  .demo-points li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.5em;
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 1px;
+  }
+  .demo-points em {
+    font-style: normal;
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    color: var(--muted);
+  }
+
+  /* --- Code window ------------------------------------------------------- */
+  .code-win {
+    margin: 0;
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 1.5rem;
-    background: var(--bg);
+    overflow: hidden;
+    background: var(--code-bg);
+    box-shadow: 0 12px 30px -18px rgba(40, 51, 64, 0.45);
   }
-  .card-badge {
-    display: block;
-    width: 32px;
-    height: 32px;
-    border-radius: 2px;
-    background: var(--accent);
-    margin-bottom: 1rem;
+  .code-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.55rem 0.95rem;
+    background: var(--surface-dark);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
   }
-  .card h3 {
-    margin-bottom: 0.4rem;
+  .code-bar .fname {
+    color: var(--on-dark);
   }
-  .card p {
-    color: var(--muted);
+  pre.code {
     margin: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    padding: 1.15rem 1.35rem;
+    line-height: 1.75;
+    font-size: 0.86rem;
+    color: var(--text);
+  }
+  pre.code code {
+    font-size: inherit;
+  }
+
+  /* Syntax tokens (Catppuccin Latte, from global.css) */
+  .t-kw {
+    color: var(--code-keyword);
+  }
+  .t-def {
+    color: var(--code-teal);
+    font-weight: 600;
+  }
+  .t-name {
+    color: var(--code-name);
+  }
+  .t-type {
+    color: var(--code-string);
+  }
+  .t-com {
+    color: var(--code-comment);
+    font-style: italic;
+  }
+  .t-op {
+    color: var(--text);
+    font-weight: 600;
+  }
+  .t-punc {
+    color: var(--muted);
   }
 </style>
